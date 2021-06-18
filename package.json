@@ -3,8 +3,13 @@
   "version": "0.0.0",
   "description": "A github-flavoured markdown report generator for cucumber",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npm/cli.git"
+  },
   "scripts": {
-    "test": "npm run test"
+    "test": "NODE_ENV=test jest --watch",
+    "test-debug": "nodemon ./bin/genTestToc.js & NODE_ENV=test node --inspect node_modules/.bin/jest --runInBand --watch"
   },
   "keywords": [
     "cucumber",
@@ -14,5 +19,20 @@
     "github"
   ],
   "author": "Jonathan El-Bizri (github@elbizri.com)",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "cucumber-jest": "^0.3.0",
+    "jest": "^27.0.4",
+    "jest-cucumber": "^3.0.1",
+    "nodemon": "^2.0.7"
+  },
+  "jest": {
+    "verbose": true,
+    "testMatch": [
+      "**/*.steps.js"
+    ]
+  },
+  "dependencies": {
+    "commander": "^7.2.0"
+  }
 }
