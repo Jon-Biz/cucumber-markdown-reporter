@@ -14,7 +14,7 @@ async function generator(folderPath) {
         const output = featureLine.split('Scenario:')[1].trimStart()
 
         return (
-            `*[ ] ${output}
+            `* [ ] ${output}
 `
         )
     }
@@ -23,7 +23,7 @@ async function generator(folderPath) {
         const output = featureLine.split('# Scenario:')[1].trimStart()
 
         return (
-            `*[X] ${output}
+            `* [X] ${output}
 `
         )
     }
