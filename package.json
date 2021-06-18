@@ -1,6 +1,6 @@
 {
   "name": "cucumber-markdown-summary",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A github-flavoured markdown report generator for cucumber",
   "main": "index.js",
   "repository": {
