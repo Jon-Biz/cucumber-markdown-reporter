@@ -13,15 +13,16 @@ defineFeature(feature, test => {
         });
 
         let data
-        when('The reporter is run', () => {
+        when('The reporter is run', async () => {
             try {
                 const data = fs.readFileSync('README.md')
+                expect(data).not.toBeDefined()
             }
             catch(err) {
                 expect(err).toBeDefined
             }
 
-            generator(testFileLocation)
+            await generator(testFileLocation)
             data = fs.readFileSync('README.md')
         });
 
