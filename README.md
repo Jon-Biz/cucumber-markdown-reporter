@@ -2,7 +2,7 @@
 
 Generates github-friendly markdown report from cucumber feature files. A lightweight alternative to cucumber-html-reporters.
 
-A README.md file is generated in the root features directory, listing the Features and Scenarios. Commented out Features and Scenarios are marked as TODO
+A README.md file is generated in the root features directory, listing the Features and Scenarios. Commented out Features and Scenarios are marked.
 
 ```
 # Generating a report
