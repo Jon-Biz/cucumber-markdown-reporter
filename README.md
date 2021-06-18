@@ -8,6 +8,6 @@ A README.md file is generated in the root features directory, listing the Featur
 
 # Generating a report
 
-*[X] Running the reporter but the test suite location cannot be location or is not provided
-*[X] Getting information from the reporter
-*[ ] Check step files for test completeness
+* [X] Running the reporter but the test suite location cannot be location or is not provided
+* [X] Getting information from the reporter
+* [ ] Check step files for test completeness
