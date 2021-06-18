@@ -7,12 +7,13 @@ Feature: Generating a report
 Scenario: Running the reporter
 Given A set of features and step files
 When The reporter is run
-Then it should produce a text file
+Then it should save a file as the README.md of the test suite
+# Then it should save a text file as the README.md of the test suite
 
-# Scenario: Getting information from the reporter
-# Given A set of features and steps
-# When The reporter is run
-# Then The output should list all the features in the test suites
+Scenario: Getting information from the reporter
+Given A set of features and steps
+When The reporter is run
+Then The output should list all the features in the test suites
 # Then the output should list the features as markdown headings
 # Then the output should list all commented out features with empty checkboxes
 # Then the output should list all commented out features with empty checkboxes

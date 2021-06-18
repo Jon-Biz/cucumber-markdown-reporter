@@ -4,33 +4,18 @@ const path = require('path')
 const { program } = require('commander');
 
 function formatOutput(output) {
-    return output
+    const text = output.map(scenarioArr => scenarioArr.join('')).join('')
+    return text
 }
 
 async function generator(folderPath) {
-
-    function processCommentedStep(featureLine) {
-        const output = featureLine.split('# ')[1].trimStart()
-
-        return (
-            `*[ ] ${output}`
-        )
-    }
-
-    function processStep(featureLine) {
-
-        return (
-            `*[x] ${featureLine}`
-        )
-    }
 
     function processScenario(featureLine) {
         const output = featureLine.split('Scenario:')[1].trimStart()
 
         return (
-            `# ${output}
-
-            `
+            `*[ ] ${output}
+`
         )
     }
 
@@ -38,7 +23,8 @@ async function generator(folderPath) {
         const output = featureLine.split('# Scenario:')[1].trimStart()
 
         return (
-            `## TO DO: ${output}`
+            `*[X] ${output}
+`
         )
     }
 
@@ -49,7 +35,7 @@ async function generator(folderPath) {
         return (
             `# ${output}
 
-            `
+`
         )
     }
 
@@ -59,7 +45,7 @@ async function generator(folderPath) {
         return (
             `# TO DO: ${output}
 
-            `
+`
         )
     }
 
@@ -70,12 +56,7 @@ async function generator(folderPath) {
         if (line.startsWith('Scenario:')) return processScenario(line)
         if (line.startsWith('# Scenario:')) return processCommentedScenario(line)
 
-        if (line.startsWith('Given ')) return processStep(line)
-        if (line.startsWith('When ')) return processStep(line)
-        if (line.startsWith('Then ')) return processStep(line)
-        if (line.startsWith('#')) return processCommentedStep(line)
-
-        return line
+        return false
     }
     
     async function processLineByLine(filePath) {
@@ -92,7 +73,7 @@ async function generator(folderPath) {
             output.push(processedLine)
         }
 
-        return output
+        return output.filter(item => typeof item === 'string')
     }
           
     async function processFile(fileName) {
@@ -108,18 +89,18 @@ async function generator(folderPath) {
         ))
     }
     
+    let formattedOutput
     try {
         fileList = fs.readdirSync(folderPath)
         const output = await processFolder(fileList)
-        const formattedOutput = formatOutput(output)
-        console.log(formattedOutput)
+        formattedOutput = formatOutput(output)
 
     }
     catch (err) {
         console.error(err)
     }
 
-    fs.writeFileSync('README.md', '')
+    fs.writeFileSync( folderPath + '/README.md', formattedOutput)
 }
 
 module.exports = generator
